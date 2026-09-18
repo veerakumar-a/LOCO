@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Favorites — LOCO</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark">L</span>LOCO</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="services.html">Services</a>
+      <a href="skills.html">Skills</a>
+      <a href="events.html">Events</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span class="theme-icon">🌙</span></button>
+      <div style="position:relative;">
+        <button class="icon-btn" id="notifBell" aria-label="Notifications">🔔<span class="badge-dot" id="notifCount">0</span></button>
+        <div class="panel hidden" id="notifPanel" style="position:absolute; right:0; top:50px; width:320px; max-height:400px; overflow-y:auto; z-index:150;">
+          <div id="notifList"></div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" aria-label="Favorites">❤️</a>
+      <div id="navUserSlot"></div>
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="drawer-backdrop"></div>
+<div class="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="marketplace.html">Marketplace</a>
+  <a href="services.html">Services</a>
+  <a href="skills.html">Skills</a>
+  <a href="events.html">Events</a>
+  <a href="favorites.html">Favorites</a>
+  <a href="messages.html">Messages</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="profile.html">Profile</a>
+  <a href="about.html">About / Help</a>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div><h2>Your Favorites</h2><p>Items, services and events you've saved</p></div></div>
+    <div class="grid" id="favGrid"></div>
+    <div class="empty-state hidden" id="favEmpty">
+      <div class="icon">❤️</div><h3>No favorites yet</h3><p>Tap the heart icon on any listing to save it here.</p>
+      <a href="marketplace.html" class="btn btn-primary mt-16">Browse Marketplace</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 LOCO. Built for the local community.</span>
+      <span>711525BCS178 · VEERAKUMAR A</span>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bottom-nav">
+  <a href="index.html"><span class="mbn-icon">🏠</span>Home</a>
+  <a href="marketplace.html"><span class="mbn-icon">🛍️</span>Market</a>
+  <a href="events.html"><span class="mbn-icon">📅</span>Events</a>
+  <a href="messages.html"><span class="mbn-icon">💬</span>Chat</a>
+  <a href="dashboard.html"><span class="mbn-icon">👤</span>You</a>
+</nav>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/marketplace.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/messages.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const user = DB.currentUser();
+    const grid = document.getElementById("favGrid");
+    const empty = document.getElementById("favEmpty");
+    if (!user) {
+      empty.classList.remove("hidden");
+      empty.querySelector("h3").textContent = "Sign in to see your favorites";
+      empty.querySelector("p").textContent = "Create an account or log in to start saving items.";
+      return;
+    }
+    const favs = DB.favorites().filter(f => f.userId === user.id);
+    if (!favs.length) { empty.classList.remove("hidden"); return; }
+    const templates = { listing: listingCardHTML, service: serviceCardHTML, skill: skillCardHTML, event: eventCardHTML };
+    const cards = favs.map(f => {
+      const item = f.itemType === "skill" ? DB.skills().find(s => s.id === f.itemId) : getItemById(f.itemId, f.itemType);
+      return item ? templates[f.itemType](item) : "";
+    }).filter(Boolean);
+    grid.innerHTML = cards.join("");
+    wireFavoriteButtons(grid);
+    wireDetailButtons(grid);
+    wireConnectButtons(grid);
+    wireJoinEventButtons(grid);
+  });
+</script>
+</body>
+</html>

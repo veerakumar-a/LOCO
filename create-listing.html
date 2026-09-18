@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create a Listing — LOCO</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark">L</span>LOCO</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="services.html">Services</a>
+      <a href="skills.html">Skills</a>
+      <a href="events.html">Events</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span class="theme-icon">🌙</span></button>
+      <div style="position:relative;">
+        <button class="icon-btn" id="notifBell" aria-label="Notifications">🔔<span class="badge-dot" id="notifCount">0</span></button>
+        <div class="panel hidden" id="notifPanel" style="position:absolute; right:0; top:50px; width:320px; max-height:400px; overflow-y:auto; z-index:150;">
+          <div id="notifList"></div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" aria-label="Favorites">❤️</a>
+      <div id="navUserSlot"></div>
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="drawer-backdrop"></div>
+<div class="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="marketplace.html">Marketplace</a>
+  <a href="services.html">Services</a>
+  <a href="skills.html">Skills</a>
+  <a href="events.html">Events</a>
+  <a href="favorites.html">Favorites</a>
+  <a href="messages.html">Messages</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="profile.html">Profile</a>
+  <a href="about.html">About / Help</a>
+</div>
+
+<section class="section">
+  <div class="container" style="max-width:720px;">
+    <div class="panel">
+      <h2 id="formTitle" style="margin-top:0;">Create a Listing</h2>
+      <p class="muted">Fill in the details below. Your listing will be visible to the whole community instantly.</p>
+      <form id="createListingForm" novalidate>
+        <div class="form-group">
+          <label>Choose an icon for your listing</label>
+          <div class="preview-row" id="iconPicker"></div>
+        </div>
+        <div class="form-group">
+          <label>Preview</label>
+          <div class="image-drop">
+            <div id="mediaPreview" style="font-size:48px;">📦</div>
+            <span>Pick an icon above to represent your item — no external image upload needed for this demo.</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lTitle">Title</label>
+          <input type="text" id="lTitle" placeholder="e.g. MacBook Air M1 - Excellent Condition">
+          <div class="error-text"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lCategory">Category</label>
+            <select class="form-control" id="lCategory">
+              <option>Electronics</option><option>Books</option><option>Furniture</option>
+              <option>Fashion</option><option>Home</option><option>Food</option><option>Sports</option><option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="lCondition">Condition</label>
+            <select class="form-control" id="lCondition">
+              <option>New</option><option>Like New</option><option>Excellent</option><option>Good</option><option>Fair</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="lPrice">Price (₹)</label>
+            <input type="number" id="lPrice" min="1" placeholder="e.g. 5000">
+            <div class="error-text"></div>
+          </div>
+          <div class="form-group">
+            <label for="lLocation">Pickup Location</label>
+            <input type="text" id="lLocation" placeholder="e.g. RS Puram, Coimbatore">
+            <div class="error-text"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="lDescription">Description</label>
+          <textarea id="lDescription" placeholder="Describe your item's condition, reason for selling, etc."></textarea>
+          <div class="error-text"></div>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit"><span id="submitBtnLabel">Publish Listing</span></button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 LOCO. Built for the local community.</span>
+      <span>711525BCS178 · VEERAKUMAR A</span>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bottom-nav">
+  <a href="index.html"><span class="mbn-icon">🏠</span>Home</a>
+  <a href="marketplace.html"><span class="mbn-icon">🛍️</span>Market</a>
+  <a href="events.html"><span class="mbn-icon">📅</span>Events</a>
+  <a href="messages.html"><span class="mbn-icon">💬</span>Chat</a>
+  <a href="dashboard.html"><span class="mbn-icon">👤</span>You</a>
+</nav>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/marketplace.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/messages.js"></script>
+</body>
+</html>
