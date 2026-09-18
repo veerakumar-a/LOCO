@@ -61,9 +61,14 @@
         <div class="form-group">
           <label>Preview</label>
           <div class="image-drop">
-            <div id="mediaPreview" style="font-size:48px;">📦</div>
-            <span>Pick an icon above to represent your item — no external image upload needed for this demo.</span>
+            <div id="mediaPreview" style="font-size:48px; display:flex; align-items:center; justify-content:center; min-height:140px;">📦</div>
+            <span>Pick an icon or upload a real listing photo for better visibility.</span>
           </div>
+        </div>
+        <div class="form-group">
+          <label for="listingImage">Listing Image</label>
+          <input type="file" id="listingImage" accept="image/*">
+          <div class="hint">Uploaded files are converted to Base64 and stored locally in your browser.</div>
         </div>
         <div class="form-group">
           <label for="lTitle">Title</label>

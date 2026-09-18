@@ -61,17 +61,17 @@
       <form id="profileForm" novalidate>
         <div class="form-group">
           <label for="profName">Full Name</label>
-          <input type="text" id="profName">
+          <input type="text" id="profName" placeholder="Enter your full name">
           <div class="error-text">Enter your full name</div>
         </div>
         <div class="form-group">
           <label for="profEmail">Email</label>
-          <input type="email" id="profEmail" disabled style="opacity:0.6;">
-          <div class="hint">Email can't be changed in this demo</div>
+          <input type="email" id="profEmail" placeholder="you@example.com">
+          <div class="hint">Update your email and it will sync to the local storage profile immediately.</div>
         </div>
         <div class="form-group">
           <label for="profLocation">Community Area</label>
-          <input type="text" id="profLocation" placeholder="e.g. RS Puram">
+          <input type="text" id="profLocation" placeholder="e.g. RS Puram, Coimbatore">
         </div>
         <div class="form-group">
           <label for="profBio">Bio</label>
@@ -106,5 +106,6 @@
 <script src="js/marketplace.js"></script>
 <script src="js/dashboard.js"></script>
 <script src="js/messages.js"></script>
+<script src="js/profile.js"></script>
 </body>
 </html>
