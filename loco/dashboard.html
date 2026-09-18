@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — LOCO</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark">L</span>LOCO</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="services.html">Services</a>
+      <a href="skills.html">Skills</a>
+      <a href="events.html">Events</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span class="theme-icon">🌙</span></button>
+      <div style="position:relative;">
+        <button class="icon-btn" id="notifBell" aria-label="Notifications">🔔<span class="badge-dot" id="notifCount">0</span></button>
+        <div class="panel hidden" id="notifPanel" style="position:absolute; right:0; top:50px; width:320px; max-height:400px; overflow-y:auto; z-index:150;">
+          <div id="notifList"></div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" aria-label="Favorites">❤️</a>
+      <div id="navUserSlot"></div>
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="drawer-backdrop"></div>
+<div class="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="marketplace.html">Marketplace</a>
+  <a href="services.html">Services</a>
+  <a href="skills.html">Skills</a>
+  <a href="events.html">Events</a>
+  <a href="favorites.html">Favorites</a>
+  <a href="messages.html">Messages</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="profile.html">Profile</a>
+  <a href="about.html">About / Help</a>
+</div>
+
+<section class="container" id="dashRoot">
+  <div class="dash-layout">
+    <aside class="dash-side">
+      <div class="panel dash-profile-card">
+        <div class="avatar lg dash-user-avatar"></div>
+        <h3 class="dash-user-name" style="margin:10px 0 2px;"></h3>
+        <span class="muted dash-user-loc" style="font-size:13px;"></span>
+        <a href="profile.html" class="btn btn-outline btn-sm btn-block mt-16">Edit Profile</a>
+        <button class="btn btn-danger btn-sm btn-block mt-8" data-logout>Log Out</button>
+      </div>
+      <nav class="panel dash-nav" style="padding:10px;">
+        <button class="active" data-target="panel-listings">🛍️ My Listings</button>
+        <button data-target="panel-saved">❤️ Saved Items</button>
+        <button data-target="panel-skills">🎓 Skills</button>
+        <button data-target="panel-events">📅 Joined Events</button>
+        <button data-target="panel-messages">💬 Messages</button>
+        <button data-target="panel-notifications">🔔 Notifications</button>
+      </nav>
+    </aside>
+    <main>
+      <h2 style="margin:4px 0 20px;">Your Dashboard</h2>
+      <div class="stat-grid" id="dashStats"></div>
+      <div class="panel">
+        <div id="panel-listings" class="dash-panel"></div>
+        <div id="panel-saved" class="dash-panel hidden"></div>
+        <div id="panel-skills" class="dash-panel hidden"></div>
+        <div id="panel-events" class="dash-panel hidden"></div>
+        <div id="panel-messages" class="dash-panel hidden"></div>
+        <div id="panel-notifications" class="dash-panel hidden"></div>
+      </div>
+    </main>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 LOCO. Built for the local community.</span>
+      <span>711525BCS178 · VEERAKUMAR A</span>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bottom-nav">
+  <a href="index.html"><span class="mbn-icon">🏠</span>Home</a>
+  <a href="marketplace.html"><span class="mbn-icon">🛍️</span>Market</a>
+  <a href="events.html"><span class="mbn-icon">📅</span>Events</a>
+  <a href="messages.html"><span class="mbn-icon">💬</span>Chat</a>
+  <a href="dashboard.html" class="active"><span class="mbn-icon">👤</span>You</a>
+</nav>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/marketplace.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/messages.js"></script>
+</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About & Help — LOCO</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark">L</span>LOCO</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="services.html">Services</a>
+      <a href="skills.html">Skills</a>
+      <a href="events.html">Events</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span class="theme-icon">🌙</span></button>
+      <div style="position:relative;">
+        <button class="icon-btn" id="notifBell" aria-label="Notifications">🔔<span class="badge-dot" id="notifCount">0</span></button>
+        <div class="panel hidden" id="notifPanel" style="position:absolute; right:0; top:50px; width:320px; max-height:400px; overflow-y:auto; z-index:150;">
+          <div id="notifList"></div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" aria-label="Favorites">❤️</a>
+      <div id="navUserSlot"></div>
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="drawer-backdrop"></div>
+<div class="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="marketplace.html">Marketplace</a>
+  <a href="services.html">Services</a>
+  <a href="skills.html">Skills</a>
+  <a href="events.html">Events</a>
+  <a href="favorites.html">Favorites</a>
+  <a href="messages.html">Messages</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="profile.html">Profile</a>
+  <a href="about.html">About / Help</a>
+</div>
+
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <span class="eyebrow-chip">About LOCO</span>
+    <h2 style="font-size:32px;">Connect. Discover. Thrive Locally.</h2>
+    <p class="muted" style="font-size:15.5px; line-height:1.7;">
+      LOCO is a local community marketplace and skill-sharing platform built to help neighbours buy, sell, hire
+      and learn from one another. Whether you're clearing out old furniture, looking for a reliable tutor,
+      or hoping to trade a skill you know for one you'd like to learn, LOCO brings it all into a single,
+      trusted community space.
+    </p>
+
+    <h3 id="faq" class="mt-24">Frequently Asked Questions</h3>
+    <div id="faqAccordion"></div>
+
+    <h3 id="contact" class="mt-24">Contact & Support</h3>
+    <div class="panel">
+      <p>Have a question, found a bug, or want to suggest a feature? Reach out — we'd love to hear from you.</p>
+      <div class="flex gap-16" style="flex-wrap:wrap;">
+        <div>📧 support@loco.demo</div>
+        <div>📍 Coimbatore, Tamil Nadu</div>
+      </div>
+    </div>
+
+    <div class="panel mt-24" style="text-align:center;">
+      <b>Project Details</b>
+      <p class="muted" style="margin:6px 0 0;">Full-Stack Web Development · Local Community Marketplace and Skill-Sharing Web App<br>
+      711525BCS178 · VEERAKUMAR A</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 LOCO. Built for the local community.</span>
+      <span>711525BCS178 · VEERAKUMAR A</span>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bottom-nav">
+  <a href="index.html"><span class="mbn-icon">🏠</span>Home</a>
+  <a href="marketplace.html"><span class="mbn-icon">🛍️</span>Market</a>
+  <a href="events.html"><span class="mbn-icon">📅</span>Events</a>
+  <a href="messages.html"><span class="mbn-icon">💬</span>Chat</a>
+  <a href="dashboard.html"><span class="mbn-icon">👤</span>You</a>
+</nav>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/marketplace.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/messages.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const faqs = [
+      ["Is LOCO free to use?", "Yes — creating listings, offering skills, and joining events on LOCO is completely free."],
+      ["How does messaging work?", "Tap 'Connect' or 'Message' on any listing, service, or skill to start a conversation. All chats live under the Messages tab."],
+      ["Is my data stored anywhere online?", "This is a demo build — all data (listings, messages, favorites) is stored locally in your browser's storage, not on a server."],
+      ["How do I edit or delete a listing?", "Go to your Dashboard → My Listings, then use the Edit or Delete buttons next to any listing you've created."],
+      ["Can I offer more than one skill?", "Absolutely. Add as many skills as you like from the Skills tab in your Dashboard."]
+    ];
+    document.getElementById("faqAccordion").innerHTML = faqs.map((f, i) => `
+      <div class="panel mt-16" style="padding:0;overflow:hidden;">
+        <button class="faq-q" data-i="${i}" style="width:100%;text-align:left;background:none;border:none;padding:18px 20px;font-weight:700;font-size:14.5px;display:flex;justify-content:space-between;align-items:center;">
+          ${f[0]} <span class="faq-arrow">＋</span>
+        </button>
+        <div class="faq-a hidden" style="padding:0 20px 18px;color:var(--muted);font-size:14px;line-height:1.6;">${f[1]}</div>
+      </div>`).join("");
+    document.querySelectorAll(".faq-q").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const answer = btn.parentElement.querySelector(".faq-a");
+        const arrow = btn.querySelector(".faq-arrow");
+        answer.classList.toggle("hidden");
+        arrow.textContent = answer.classList.contains("hidden") ? "＋" : "−";
+      });
+    });
+  });
+</script>
+</body>
+</html>

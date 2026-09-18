@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOCO — Local Community Marketplace & Skill Sharing</title>
+<meta name="description" content="Connect. Discover. Thrive Locally. Find products, services, skills and events near you.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧭</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-mark">L</span>LOCO</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="marketplace.html">Marketplace</a>
+      <a href="services.html">Services</a>
+      <a href="skills.html">Skills</a>
+      <a href="events.html">Events</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Toggle dark mode"><span class="theme-icon">🌙</span></button>
+      <div style="position:relative;">
+        <button class="icon-btn" id="notifBell" aria-label="Notifications">🔔<span class="badge-dot" id="notifCount">0</span></button>
+        <div class="panel hidden" id="notifPanel" style="position:absolute; right:0; top:50px; width:320px; max-height:400px; overflow-y:auto; z-index:150;">
+          <div id="notifList"></div>
+        </div>
+      </div>
+      <a href="favorites.html" class="icon-btn" aria-label="Favorites">❤️</a>
+      <div id="navUserSlot"></div>
+      <button class="nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+</nav>
+<div class="drawer-backdrop"></div>
+<div class="mobile-drawer">
+  <a href="index.html">Home</a>
+  <a href="marketplace.html">Marketplace</a>
+  <a href="services.html">Services</a>
+  <a href="skills.html">Skills</a>
+  <a href="events.html">Events</a>
+  <a href="favorites.html">Favorites</a>
+  <a href="messages.html">Messages</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="profile.html">Profile</a>
+  <a href="about.html">About / Help</a>
+</div>
+
+<header class="hero">
+  <div class="container hero-inner">
+    <div>
+      <span class="eyebrow-chip">📍 Coimbatore Community</span>
+      <h1>Your Community.<br>Your <span>Marketplace</span>.<br>Your Skills.</h1>
+      <p class="lead">Buy, sell, hire and learn from the people around you. LOCO brings your neighbourhood's products, services, skills and events into one place.</p>
+
+      <div class="searchbar" style="max-width:520px;">
+        <span>🔍</span>
+        <input type="text" id="homeSearchInput" placeholder="Search products, services, skills, events...">
+        <select id="homeLocationSelect" aria-label="Select community area">
+          <option>RS Puram</option><option>Gandhipuram</option><option>Peelamedu</option>
+          <option>Saibaba Colony</option><option>Race Course</option><option>Ganapathy</option>
+        </select>
+        <div class="search-suggestions hidden" id="homeSearchSugg"></div>
+      </div>
+
+      <div class="hero-ctas">
+        <a href="create-listing.html" class="btn btn-primary">+ Create a Listing</a>
+        <a href="marketplace.html" class="btn btn-outline">Browse Marketplace</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b id="statListings">—</b><span>Active Listings</span></div>
+        <div class="stat"><b id="statUsers">—</b><span>Community Members</span></div>
+        <div class="stat"><b id="statEvents">—</b><span>Upcoming Events</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <span class="blob">🧭</span>
+      <div class="float-card fc1">🛍️ New listing nearby</div>
+      <div class="float-card fc2">🎓 Python tutor available</div>
+      <div class="float-card fc3">📅 3 events this week</div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div><h2>Browse by category</h2><p>Everything your neighbourhood has to offer</p></div></div>
+    <div class="cat-grid" id="categoryGrid"></div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>Trending listings</h2><p>Popular items in your community right now</p></div>
+      <a href="marketplace.html" class="see-all">See all →</a>
+    </div>
+    <div class="grid" id="trendingGrid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>Nearby services</h2><p>Trusted providers close to you</p></div>
+      <a href="services.html" class="see-all">See all →</a>
+    </div>
+    <div class="grid" id="nearbyServicesGrid"></div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-head">
+      <div><h2>Upcoming community events</h2><p>Join something happening near you</p></div>
+      <a href="events.html" class="see-all">See all →</a>
+    </div>
+    <div class="grid cols-3" id="eventsPreviewGrid"></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="panel" style="background:var(--grad-brand); border:none; padding:44px; display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;">
+      <div style="color:white; max-width:520px;">
+        <h2 style="margin:0 0 8px; color:white;">Skill exchange: learn something, teach something</h2>
+        <p style="margin:0; opacity:0.9;">Trade skills with your neighbours — Python for guitar lessons, design help for spoken English practice.</p>
+      </div>
+      <a href="skills.html" class="btn" style="background:white; color:var(--blue);">Explore Skill Sharing</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="index.html" class="brand" style="color:white;margin-bottom:12px;display:inline-flex;"><span class="brand-mark">L</span>LOCO</a>
+        <p>Connect. Discover. Thrive Locally.<br>Your neighbourhood marketplace for products, services, skills and events.</p>
+      </div>
+      <div><h4>Explore</h4>
+        <a href="marketplace.html">Marketplace</a><br><a href="services.html">Services</a><br>
+        <a href="skills.html">Skill Sharing</a><br><a href="events.html">Events</a>
+      </div>
+      <div><h4>Account</h4>
+        <a href="dashboard.html">Dashboard</a><br><a href="profile.html">Profile</a><br>
+        <a href="favorites.html">Favorites</a><br><a href="messages.html">Messages</a>
+      </div>
+      <div><h4>About</h4>
+        <a href="about.html">About &amp; Help</a><br><a href="create-listing.html">Create a Listing</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 LOCO. Built for the local community.</span>
+      <span>711525BCS178 · VEERAKUMAR A</span>
+    </div>
+  </div>
+</footer>
+<nav class="mobile-bottom-nav">
+  <a href="index.html" class="active"><span class="mbn-icon">🏠</span>Home</a>
+  <a href="marketplace.html"><span class="mbn-icon">🛍️</span>Market</a>
+  <a href="events.html"><span class="mbn-icon">📅</span>Events</a>
+  <a href="messages.html"><span class="mbn-icon">💬</span>Chat</a>
+  <a href="dashboard.html"><span class="mbn-icon">👤</span>You</a>
+</nav>
+<button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/marketplace.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/messages.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    // stats
+    document.getElementById("statListings").textContent = DB.listings().length + "+";
+    document.getElementById("statUsers").textContent = DB.users().length + "+";
+    document.getElementById("statEvents").textContent = DB.events().length;
+
+    // categories
+    const cats = [
+      ["Electronics","💻"], ["Books","📚"], ["Furniture","🛋️"], ["Fashion","👕"],
+      ["Home","🏠"], ["Food","🍱"], ["Sports","🏸"], ["Other","📦"]
+    ];
+    document.getElementById("categoryGrid").innerHTML = cats.map(([name, icon]) => {
+      const count = DB.listings().filter(l => l.category === name).length;
+      return `<a class="cat-card" href="marketplace.html?category=${encodeURIComponent(name)}">
+        <div class="cat-icon">${icon}</div><b>${name}</b><span>${count} listings</span></a>`;
+    }).join("");
+
+    // trending listings (top rated, 4)
+    const trending = [...DB.listings()].sort((a,b) => b.rating - a.rating).slice(0,4);
+    document.getElementById("trendingGrid").innerHTML = trending.map(listingCardHTML).join("");
+    wireFavoriteButtons(document.getElementById("trendingGrid"));
+    wireDetailButtons(document.getElementById("trendingGrid"));
+
+    // nearby services (4)
+    const nearby = DB.services().slice(0,4);
+    document.getElementById("nearbyServicesGrid").innerHTML = nearby.map(serviceCardHTML).join("");
+    wireFavoriteButtons(document.getElementById("nearbyServicesGrid"));
+    wireDetailButtons(document.getElementById("nearbyServicesGrid"));
+
+    // events preview (3)
+    const evs = DB.events().slice(0,3);
+    document.getElementById("eventsPreviewGrid").innerHTML = evs.map(eventCardHTML).join("");
+    wireFavoriteButtons(document.getElementById("eventsPreviewGrid"));
+    wireDetailButtons(document.getElementById("eventsPreviewGrid"));
+    wireJoinEventButtons(document.getElementById("eventsPreviewGrid"));
+
+    initGlobalSearch("homeSearchInput", "homeSearchSugg", (val) => {
+      window.location.href = "marketplace.html?q=" + encodeURIComponent(val);
+    });
+  });
+</script>
+</body>
+</html>
